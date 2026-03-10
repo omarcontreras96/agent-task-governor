@@ -113,8 +113,13 @@ function run(tasks, policy, currentTime) {
     const action = assignAction(task, score, staleness, policy);
     const reason = generateReason(task, score, staleness);
 
+    const desc = task.description.length > 50
+      ? task.description.substring(0, 47) + '...'
+      : task.description;
+
     return {
       id: task.id,
+      description: desc,
       effectivePriority: score.effectivePriority,
       action,
       reason,
