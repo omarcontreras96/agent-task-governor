@@ -14,6 +14,14 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', version: '1.0.0' });
 });
 
+// GET /api/govern — helpful message for browser visits
+app.get('/api/govern', (req, res) => {
+  res.json({
+    message: 'Agent Task Governor is running. Send a POST request with a tasks array to use this endpoint.',
+    usage: 'POST /api/govern with JSON body: { "tasks": [...], "policy": "balanced" }',
+  });
+});
+
 // Main governance endpoint
 app.post('/api/govern', (req, res) => {
   // Set 8s timeout to stay under Join39's 10s limit
